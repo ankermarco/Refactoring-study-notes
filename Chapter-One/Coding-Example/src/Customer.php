@@ -25,11 +25,8 @@ class Customer
 
   public function statement()
   {
-    $totalAmount = 0.00;
-    $frequentRenterPoints = 0;
-    $rentals = $this->_rentals;
     $result = "Rental Record for " . $this->getName() . "\n";
-    foreach ($rentals as $each) {
+    foreach ($this->_rentals as $each) {
       // show figures for this rental
       $result .= "\t" . $each->getMovie()->getTitle() . "\t" . $each->getCharge() . "\n";
     }
