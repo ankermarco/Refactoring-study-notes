@@ -5,30 +5,20 @@
  */
 class CustomerStatementTest extends PHPUnit_Framework_TestCase
 {
-  private $movie;
-  private $rental;
   private $customer;
-  private $first = true;
 
   public function setUp()
   {
-    $this->movie = new Movie('Test Movie', 1);
-    $this->rental = new Rental($this->movie, 3);
     $this->customer = new Customer('Lee');
-
-    if ($this->first)
-    {
-      $this->generateStatementOutput();
-    }
-
+    $this->generateStatementOutput();
   }
 
   private function generateStatementOutput()
   {
-    $this->customer->addRental($this->rental);
+    $this->customer->addRental(new Rental(new Movie('Test Movie', 1), 3));
+    $this->customer->addRental(new Rental(new Movie('Test Movie 2', 1), 2));
     $statement = $this->customer->statement();
     file_put_contents('/tmp/gm.txt', $statement);
-    $this->first = false;
   }
 
   public function testCustomerCanGetStatement()
@@ -38,8 +28,6 @@ class CustomerStatementTest extends PHPUnit_Framework_TestCase
 
   public function tearDown()
   {
-    $this->movie = null;
-    $this->rental = null;
     $this->customer = null;
   }
 }
