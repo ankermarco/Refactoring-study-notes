@@ -25,7 +25,7 @@ class Movie
 
   public function setPriceCode($arg)
   {
-    $this->priceCode = $arg;
+    $this->_priceCode = $arg;
   }
 
   public function getTitle()

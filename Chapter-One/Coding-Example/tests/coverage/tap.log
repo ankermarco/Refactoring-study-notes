@@ -1,3 +1,5 @@
 TAP version 13
-ok 1 - CustomerTest::testFirstTest
-1..1
+ok 1 - CustomerTest::testCustomerCanGetName
+ok 2 - CustomerTest::testCustomerCanAddRental
+ok 3 - RentalTest::testCanGetMovieToRental
+1..3
