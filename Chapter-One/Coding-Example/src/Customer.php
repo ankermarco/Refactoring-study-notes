@@ -30,7 +30,7 @@ class Customer
     $rentals = $this->_rentals;
     $result = "Rental Record for " . $this->getName() . "\n";
     foreach ($rentals as $each) {
-      $frequentRenterPoints = $each->getFrequentRenterPoints();
+      $frequentRenterPoints += $each->getFrequentRenterPoints();
 
 
       // show figures for this rental
@@ -38,8 +38,17 @@ class Customer
       $totalAmount += $each->getCharge();
     }
     // add footer lines
-    $result .= "Amount owed is " . $totalAmount . "\n";
+    $result .= "Amount owed is " . $this->getTotalCharge() . "\n";
     $result .= "You earned " . $frequentRenterPoints . " frequent renter points";
+    return $result;
+  }
+
+  private function getTotalCharge()
+  {
+    $result = 0;
+    foreach ($this->_rentals as $each) {
+      $result += $each->getCharge();
+    }
     return $result;
   }
 
