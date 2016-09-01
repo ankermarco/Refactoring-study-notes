@@ -17,8 +17,12 @@ class CustomerStatementTest extends PHPUnit_Framework_TestCase
   {
     $this->customer->addRental(new Rental(new Movie('Test Movie', 1), 3));
     $this->customer->addRental(new Rental(new Movie('Test Movie 2', 1), 2));
-    $statement = $this->customer->statement();
-    file_put_contents('/tmp/gm.txt', $statement);
+    
+    if(!file_exists('/tmp/gm.txt'))
+    {
+      $statement = $this->customer->statement();
+      file_put_contents('/tmp/gm.txt', $statement);
+    }
   }
 
   public function testCustomerCanGetStatement()
